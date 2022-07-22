@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Phú Quốc</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" id="metaViewport" content="user-scalable=no, initial-scale=1, width=device-width, viewport-fit=cover" data-tdv-general-scale="0.5"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <script src="lib/tdvplayer.js?v=1650021076979"></script>
+    <link rel="preload" href="locale/en.txt?v=1650021076979" as="fetch" crossorigin="anonymous"/>
+	<link rel="preload" href="script.js?v=1650021076979" as="script"/>
+	<link rel="preload" href="media/panorama_2AF150AC_21A4_2E42_41AE_6B1EAA6E5CA3_0/r/3/0_0.jpg?v=1650021076979" as="image"/>
+	<link rel="preload" href="media/panorama_2AF150AC_21A4_2E42_41AE_6B1EAA6E5CA3_0/l/3/0_0.jpg?v=1650021076979" as="image"/>
+	<link rel="preload" href="media/panorama_2AF150AC_21A4_2E42_41AE_6B1EAA6E5CA3_0/u/3/0_0.jpg?v=1650021076979" as="image"/>
+	<link rel="preload" href="media/panorama_2AF150AC_21A4_2E42_41AE_6B1EAA6E5CA3_0/d/3/0_0.jpg?v=1650021076979" as="image"/>
+	<link rel="preload" href="media/panorama_2AF150AC_21A4_2E42_41AE_6B1EAA6E5CA3_0/f/3/0_0.jpg?v=1650021076979" as="image"/>
+	<link rel="preload" href="media/panorama_2AF150AC_21A4_2E42_41AE_6B1EAA6E5CA3_0/b/3/0_0.jpg?v=1650021076979" as="image"/>
+	<meta name="description" content="Virtual Tour"/>
+	<meta name="theme-color" content="#FFFFFF"/>
+    <script src="script.js?v=1650021076979"></script>
+    <!-- <link rel="stylesheet" href="../assets/css/style.css"> -->
+    <link rel="stylesheet" href="../assets/css/animation.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-select.css">
+    <script type="text/javascript">
+        var tour;
+        var devicesUrl = {"general":"script_general.js?v=1650021076979","mobile":"script_mobile.js?v=1650021076979"};
+
+        (function()
+        {
+            var deviceType = ['general'];
+            if(TDV.PlayerAPI.mobile)
+                deviceType.unshift('mobile');
+            if(TDV.PlayerAPI.device == TDV.PlayerAPI.DEVICE_IPAD)
+                deviceType.unshift('ipad');
+            var url;
+            for(var i=0; i<deviceType.length; ++i) {
+                var d = deviceType[i];
+                if(d in devicesUrl) {
+                    url = devicesUrl[d];
+                    break;
+                }
+            }
+            if(typeof url == "object") {
+                var orient = TDV.PlayerAPI.getOrientation();
+                if(orient in url) {
+                    url = url[orient];
+                }
+            }
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = url;
+            link.as = 'script';
+            var el = document.getElementsByTagName('script')[0];
+            el.parentNode.insertBefore(link, el);
+        })();
+
+        function loadTour()
+        {
+            if(tour) return;
+
+            if (/AppleWebKit/.test(navigator.userAgent) && /Mobile\/\w+/.test(navigator.userAgent)) {
+                var preloadContainer = document.getElementById('preloadContainer');
+                if(preloadContainer)
+                    document.body.style.backgroundColor = window.getComputedStyle(preloadContainer).backgroundColor;
+            }
+
+            var settings = new TDV.PlayerSettings();
+            settings.set(TDV.PlayerSettings.CONTAINER, document.getElementById('viewer'));
+            settings.set(TDV.PlayerSettings.WEBVR_POLYFILL_URL, 'lib/WebVRPolyfill.js?v=1650021076979');
+            settings.set(TDV.PlayerSettings.HLS_URL, 'lib/Hls.js?v=1650021076979');
+            settings.set(TDV.PlayerSettings.QUERY_STRING_PARAMETERS, 'v=1650021076979');
+
+            tour = new TDV.Tour(settings, devicesUrl);
+            tour.bind(TDV.Tour.EVENT_TOUR_INITIALIZED, onVirtualTourInit);
+            tour.bind(TDV.Tour.EVENT_TOUR_LOADED, onVirtualTourLoaded);
+            tour.bind(TDV.Tour.EVENT_TOUR_ENDED, onVirtualTourEnded);
+            tour.load();
+        }
+
+        function pauseTour()
+        {
+            if(!tour)
+                return;
+
+            tour.pause();
+        }
+
+        function resumeTour()
+        {
+            if(!tour)
+                return;
+
+            tour.resume();
+        }
+
+        function onVirtualTourInit()
+        {
+            var updateTexts = function() {
+                document.title = this.trans("tour.name")
+            };
+
+            tour.locManager.bind(TDV.Tour.LocaleManager.EVENT_LOCALE_CHANGED, updateTexts.bind(tour.locManager));
+            
+            if (tour.player.cookiesEnabled)
+                enableCookies();
+            else
+                tour.player.bind('enableCookies', enableCookies);
+        }
+
+        function onVirtualTourLoaded()
+        {
+            disposePreloader();
+        }
+
+        function onVirtualTourEnded()
+        {
+
+        }
+
+        function enableCookies()
+        {
+            
+        }
+
+        function setMediaByIndex(index) {
+            if(!tour)
+                return;
+
+            tour.setMediaByIndex(index);
+        }
+
+        function setMediaByName(name)
+        {
+            if(!tour)
+                return;
+
+            tour.setMediaByName(name);
+        }
+
+        function showPreloader()
+        {
+            var preloadContainer = document.getElementById('preloadContainer');
+            if(preloadContainer != undefined)
+                preloadContainer.style.opacity = 1;
+        }
+
+        function disposePreloader()
+        {
+            var preloadContainer = document.getElementById('preloadContainer');
+            if(preloadContainer == undefined)
+                return;
+
+            var transitionEndName = transitionEndEventName();
+            if(transitionEndName)
+            {
+                preloadContainer.addEventListener(transitionEndName, hide, false);
+                preloadContainer.style.opacity = 0;
+                setTimeout(hide, 500); //Force hide. Some cases the transitionend event isn't dispatched with an iFrame.
+            }
+            else
+            {
+                hide();
+            }
+
+            function hide()
+            {
+                //DisposePreloader
+                document.body.style.backgroundColor = window.getComputedStyle(preloadContainer).backgroundColor;
+                preloadContainer.style.visibility = 'hidden';
+                preloadContainer.style.display = 'none';
+                var videoList = preloadContainer.getElementsByTagName("video");
+                for(var i=0; i<videoList.length; ++i)
+                {
+                    var video = videoList[i];
+                    video.pause();
+                    while (video.children.length)
+                        video.removeChild(video.children[0]);
+                }
+            }
+
+            function transitionEndEventName () {
+                var el = document.createElement('div');
+                var transitions = {
+                        'transition':'transitionend',
+                        'OTransition':'otransitionend',
+                        'MozTransition':'transitionend',
+                        'WebkitTransition':'webkitTransitionEnd'
+                    };
+
+                var t;
+                for (t in transitions) {
+                    if (el.style[t] !== undefined) {
+                        return transitions[t];
+                    }
+                }
+
+                return undefined;
+            }
+        }
+
+        function onBodyClick(){
+            document.body.removeEventListener("click", onBodyClick);
+            document.body.removeEventListener("touchend", onBodyClick);
+            
+        }
+
+        function onLoad() {
+            if (/AppleWebKit/.test(navigator.userAgent) && /Mobile\/\w+/.test(navigator.userAgent))
+            {
+                var onOrientationChange = function()
+                {
+                    document.documentElement.style.height = 'initial';
+                    Array.from(document.querySelectorAll('.fill-viewport')).forEach(function(element)
+                    {
+                        element.classList.toggle('landscape-right', window.orientation == -90);
+                        element.classList.toggle('landscape-left', window.orientation == 90);
+                    });
+                    setTimeout(function()
+                    {
+                        document.documentElement.style.height = '100%';
+                    }, 500);
+                };
+                window.addEventListener('orientationchange', onOrientationChange);
+                onOrientationChange();
+            }
+
+            var params = getParams(location.search.substr(1));
+            if(params.hasOwnProperty("skip-loading"))
+            {
+                loadTour();
+                disposePreloader();
+                return;
+            }
+
+            if (isOVRWeb()){
+                showPreloader();
+                loadTour();
+                return;
+            }
+
+            showPreloader();
+			loadTour();
+        }
+
+        function playVideo(video) {
+            function isSafariDesktopV11orGreater() {
+                return /^((?!chrome|android|crios|ipad|iphone).)*safari/i.test(navigator.userAgent) && parseFloat(/Version\/([0-9]+\.[0-9]+)/i.exec(navigator.userAgent)[1]) >= 11;
+            }
+
+            function hasAudio (video) {
+                return video.mozHasAudio ||
+                       Boolean(video.webkitAudioDecodedByteCount) ||
+                       Boolean(video.audioTracks && video.audioTracks.length);
+            }
+
+            function detectUserAction() {
+                var onVideoClick = function(e) {
+                    if(video.paused) {
+                        video.play();
+                    }
+                    video.muted = false;
+                    if(hasAudio(video))
+                    {
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        e.preventDefault();
+                    }
+
+                    video.removeEventListener('click', onVideoClick);
+                    video.removeEventListener('touchend', onVideoClick);
+                };
+                video.addEventListener("click", onVideoClick);
+                video.addEventListener("touchend", onVideoClick);
+            }
+
+            if (isSafariDesktopV11orGreater()) {
+                video.muted = true;
+                video.play();
+            } else {
+                var canPlay = true;
+                var promise = video.play();
+                if (promise) {
+                    promise.catch(function() {
+                        video.muted = true;
+                        video.play();
+                        detectUserAction();
+                    });
+                } else {
+                    canPlay = false;
+                }
+
+                if (!canPlay || video.muted) {
+                    detectUserAction();
+                }
+            }
+        }
+
+        function isOVRWeb(){
+            return window.location.hash.substring(1).split('&').indexOf('ovrweb') > -1;
+        }
+
+        function getParams(params) {
+            var queryDict = {}; params.split("&").forEach(function(item) {var k = item.split("=")[0], v = decodeURIComponent(item.split("=")[1]);queryDict[k.toLowerCase()] = v});
+            return queryDict;
+        }
+
+        document.addEventListener('DOMContentLoaded', onLoad);
+    </script>
+    <style type="text/css">
+        html, body { height:100%; width:100%; height:100vh; width:100vw; margin:0; padding:0; overflow:hidden; }
+        .fill-viewport { position:fixed; top:0; left:0; right:0; bottom:0; padding:0; margin:0; overflow: hidden; }
+        .fill-viewport.landscape-left { left: env(safe-area-inset-left); }
+		.fill-viewport.landscape-right { right: env(safe-area-inset-right); }
+        #viewer { z-index:1; }
+        
+    </style>
+    <!-- style -->
+    <style>
+        ul {
+           margin: 0px;
+       }
+       li{
+           list-style: none;
+       }
+       ul li a {
+           width: 100%;
+           display: flex;
+           color: white;
+           text-decoration: none;
+           align-content: stretch;
+           flex-wrap: nowrap;
+       }
+       .back_menu{
+           position: absolute;
+           display: block;
+           bottom: 230px;
+           right: 20px;
+           width: 200px;
+           display: block;
+           border-radius:5px;
+           background-color: #07414c80;
+          
+       }
+       .icon_location i{
+           display: none;
+       }
+      
+       .title_menu{
+         padding: 0.5rem;
+         border-color: #07414C80 !important;
+         cursor: pointer;
+         border: 2px solid #07414C80 ;
+       }
+       .title_diadiem{
+           margin-bottom: 0;
+           color:#ffff;
+       }
+       .fas{
+           position: absolute;
+           right: 10px;
+           top: 10px;
+           color:#ffff;
+       }
+
+       .menu{
+           position: absolute;
+           background-color: #07414c80;
+           border-radius: 0.25rem;
+           width: 100%;
+           height: 125px;
+           bottom: 45px;
+           display: none;
+       }
+       .list_menu{
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 0;
+        margin-top: 10px;
+       }
+       .sub_link a{
+           padding-top: 0.3rem;
+           padding-bottom: 0.3rem;
+       }
+       .link_menu{
+         width: 100%;
+         border-radius:5px;
+       }
+       a{
+           text-decoration: none !important;
+       }
+       .link{
+           justify-content: left !important;
+           padding-top:0.3rem;
+           padding-bottom: 0.3rem;
+           padding-left: 10px;
+           cursor: pointer;
+       }
+       .link_menu:hover{
+           background-color: rgba(255, 255, 255, 0.833) !important;
+       }
+       .link_menu:hover .link{
+           color:black;
+       }
+      
+       .sub_link a{
+           justify-content: left !important;
+           padding-left:10px;
+       }
+       .sub_link:hover{
+            background-color: rgba(255, 255, 255, 0.833) !important;
+       }
+       .sub_link{
+           border-radius: 5px;
+       }
+       .sub_link:hover a{
+           color:black;
+       }
+       
+      
+       .link_VN{
+            margin-top:5px;
+       }
+       
+       ::-webkit-scrollbar {
+            width: 0px;
+       }
+       ::-webkit-scrollbar-thumb:hover {
+       background: #0b282ebb;
+       }
+       /* responsive mobile */
+      
+       /*  */
+       .title_sub{
+        cursor: pointer;
+        bottom:-5px;
+       }
+       .title_sub a{
+           padding:6px 10px;
+           color:#fff;
+           background-color: #07414C80;
+           border: 2px solid #07414C80; 
+           margin-bottom:1px;
+       }
+       .list_sub{
+           display: none;
+            position: absolute;
+            right:205px;
+            height:242px;
+            bottom: 0px;
+            width: 200px;
+            border-radius: 5px;
+       }
+       .sub{
+        background-color: #07414c80;
+        bottom: 0px;
+        border-radius: 5px;
+       }
+      .sub_menu{
+            overflow-y: auto;
+            height:200px;
+            padding-inline-start: 5px;
+            padding-right: 5px;
+            padding-top:5px;
+            padding-bottom:5px;
+      }
+      
+      .sub_menu_VN{
+          height:80px !important;
+      }
+      @media only screen and (max-width:739px){
+           .back_menu{
+                right: 5px;
+                width: 170px;
+           }
+          
+           .list_sub {
+                display: none;
+                position: absolute;
+                right: 175px ;
+                height: 242px;
+                bottom: 0px;
+                width: 170px ;
+                border-radius: 5px;
+            }
+            .icon_location{
+                z-index: 111;
+                position: absolute;
+                bottom:45px;
+               
+            }
+            .icon_location i{
+                font-size: 1.5rem;
+                color:#fff;
+                display: block;
+            }
+           
+            #location_show{
+                display: none;
+                right:5px;
+                font-size: 1.5rem;
+                color:#fff;
+            }
+            .function_location{
+               right:0;
+            -webkit-animation: 1s chuyentiep forwards;
+           }
+           .function_sub{
+               right:170px;
+           }
+            @keyframes chuyentiep{
+                from{
+                    transform: translateX(0%);
+                }
+                to{
+                    transform: translateX(100%);
+                }
+            }
+            .function_show{
+                -webkit-animation: 1s chuyensang forwards;
+            }
+            @keyframes chuyensang{
+                from{
+                    transform: translateX(100%);
+                }
+                to{
+                    transform: translateX(0%);
+                }
+            }
+       }
+   
+   </style>
+    
+</head>
+<body>
+    
+    <div id="viewer" class="fill-viewport"></div>
+
+        <!-- menu con -->
+       
+        <div class="back_menu" style="z-index: 10;">
+            <div class="title_menu">
+                <p class="title_diadiem">Chọn địa điểm</p>
+                <i class="fas fa-caret-up"></i>
+            </div>
+            <div class="icon_location d-flex">
+                <i id ="location" class="fas fa-map-marker-alt "></i>
+                <i id="location_show" class="fas fa-map-marker-alt"></i>
+            </div>
+    
+            <div class="menu">
+                <ul class="list_menu">
+                    <li  class="link_menu link_VN">
+                        <a id="VN"  class="link">Việt Nam</a>
+                        <div class="list_sub sub_VN">
+                            <div class="title_sub">
+                                <a href="../index.html" class="title_sub">Việt Nam</a>
+                            </div>
+                            <div class="sub">
+                                <ul class="sub_menu_VN sub_menu">
+                                    <li class="sub_link">
+                                        <a href="../file_HL/index.html">Quảng Ninh</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="../file_PQ/index.html">Phú Quốc</a>
+                                    </li>                          
+                                </ul> 
+                            </div>
+                                                     
+                        </div>
+                    </li>
+                    <li  class="link_menu link_HL">
+                        <a id="HL"  class="link">Hạ Long</a>
+                        <div class="list_sub sub_HL">
+                            <div class="title_sub">
+                                <a href="../file_HL/index.html" class="title_sub">Quảng Ninh</a>
+                            </div>
+                            <div class="sub">
+                                <ul class="sub_menu_HL sub_menu">
+                                    <li class="sub_link">
+                                        <a href="https://vni.pro.vn/fh/SunMarinaTown?lang=vn">Sun Marina Town</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="https://vni.pro.vn/fh/SunMarinaPlaza?lang=vn">Sun Marina Plaza</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="https://vni.pro.vn/fh/SunHarborPlaza?lang=vn">Sun Harbor Plaza</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Sun Onsen Village</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Sun Grand City Feria</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Sun Plaza Grand World</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Premier Village Ha Long Bien</a>
+                                    </li>
+                                </ul>    
+                            </div>                                                  
+                        </div>
+                    </li>
+                    <li  class="link_menu link_PQ">
+                        <a  id="PQ"  class="link link_PQ">Phú Quốc</a>
+                        <div class="list_sub sub_PQ">
+                            <div class="title_sub">
+                                <a href="../file_PQ/index.html" class="title_sub">Phú Quốc</a>
+                            </div>
+                            <div class="sub">
+                                <ul class="sub_menu_PQ sub_menu">
+                                    <li class="sub_link">
+                                        <a href="">Sun Grand City</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Sun Premier Village</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">JW Marriott</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Premier Residences</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">New World</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Premier Village</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Melodia Boutique</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="https://vni.pro.vn/fh/SunTropicalVillage?lang=vn">Sun Tropical Village</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Sun Premier Village</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="https://vni.pro.vn/fh/SunGrandCityHillsideResidence?lang=vn">Sun Grand City</a>
+                                    </li>
+                                    <li class="sub_link">
+                                        <a href="">Hòn Thơm</a>
+                                    </li>
+                                </ul>      
+                            </div>
+                                                 
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+   
+</body>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/animatedModal.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/bootstrap-select.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.title_menu').click(function(){
+            $('.menu').toggle();
+        });
+        $('#PQ').click(function(){
+            $('.back_menu').removeClass('function_show');
+            $('.list_sub').removeClass('function_show');
+            $('.sub_HL').hide();
+            $('.sub_VN').hide();
+            $('.sub_PQ').toggle();
+        });
+        $('#HL').click(function(){
+            $('.back_menu').removeClass('function_show');
+            $('.list_sub').removeClass('function_show');
+            $('.sub_PQ').hide();
+            $('.sub_VN').hide();
+            $('.sub_HL').toggle();
+        });
+        $('#VN').click(function(){
+            $('.back_menu').removeClass('function_show');
+            $('.list_sub').removeClass('function_show');
+            $('.sub_PQ').hide();
+            $('.sub_HL').hide();
+            $('.sub_VN').toggle();
+        });
+
+        $('#location').click(function(){
+            $('.back_menu').removeClass('function_show');
+            $('.list_sub').removeClass('function_show');
+
+            $('.back_menu').addClass('function_location');
+            $('.list_sub').addClass('function_location');
+            $('.list_sub').addClass('function_sub');
+           
+            $('#location').hide();
+            $('#location_show').show();
+        
+           
+        });
+        $('#location_show').click(function(){
+            $('.back_menu').removeClass('function_location');
+            $('.list_sub').removeClass('function_location');
+            $('.list_sub').removeClass('function_sub');
+
+            $('.back_menu').addClass('function_show');
+            $('.list_sub').addClass('function_show');
+           
+            $('#location').show();
+            $('#location_show').hide();
+          
+        
+           
+        });
+       
+    });
+
+</script>
+</html>

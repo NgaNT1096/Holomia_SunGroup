@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun Group VR Showroom</title>
+    <link rel="stylesheet" href="./assets/css/style_map_all.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/animation.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
+    <style>
+        body{
+            overflow: auto;
+        }
+        @media only screen and (max-width:739px){
+            .list_element_map{
+                display: none;
+            }
+            .map_mobile{
+                display:block;
+            }
+            .pc{
+                display: none;
+            }
+            body{
+                margin:0;
+            }
+
+        }
+        .map{
+            width: auto;
+            height:100%;
+            margin: auto;
+        }
+   
+    </style>
+</head>
+
+<body class="body_fullmap">
+    <div class="map_mobile"  > 
+                <img class="map_1" src="assets/image/map_vn.png" usemap="#image-map1">
+                <map name="image-map1">
+                    <area target="" alt="" title="" href="./file_PQ/index.html" coords="508,1519,266,1439" shape="rect">
+                    <area target="" alt="" title="" href="./file_HL/index.html" coords="833,238,555,139" shape="rect">
+                    <area target="" alt="" title="" href="./file_PQ/index.html" coords="381,1612,370,1600,364,1587,365,1579,374,1577,389,1572,399,1576,405,1586,407,1602,407,1615,401,1625,396,1634,391,1637" shape="poly">
+                    <area target="" alt="" title="" href="./file_HL/index.html" coords="502,484,501,468,483,459,471,440,474,421,473,404,477,397,490,388,499,371,507,361,513,349,520,344,523,333,537,333,557,329,565,327,565,315,569,303,579,299,590,309,601,303,605,312,618,307,630,303,648,311,666,328,649,326,639,326,626,337,621,343,605,346,598,355,596,375,576,382,556,387,544,387,531,377,538,390,538,399,545,414,535,420,527,423,530,439,528,461,521,474,509,485" shape="poly">
+                </map>      
+    </div>
+    <div class="pc">
+            <img class="map" src="assets/image/map_fullPC.png" usemap="#image-map">
+
+            <map name="image-map">
+                <area class="map_PQ" target="" alt="" title="" href="./file_PQ/index.html" coords="1581,1283,1242,1180" shape="rect">
+                <area class="map_PQ" target="" alt="" title="" href="./file_PQ/index.html" coords="1401,1416,1385,1403,1393,1379,1409,1374,1420,1392,1425,1405,1417,1427,1406,1442" shape="poly">
+                <area class="map_HL" target="" alt="" title="" href="./file_HL/index.html" coords="1958,188,1608,90" shape="rect">
+                <area class="map_HL" target="" alt="" title="" href="./file_HL/index.html" coords="1491,372,1475,345,1481,327,1502,324,1523,319,1539,311,1555,295,1555,274,1581,274,1608,271,1629,269,1653,282,1645,295,1621,300,1605,311,1595,332,1565,345,1544,356,1547,372,1518,372" shape="poly">
+            </map>
+    </div>
+    <div class="list_element_map">
+        <ul>
+            <li class="sun_QN">
+                <a href="file_HL/index.html">
+                    <svg class="logo_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M236 176c0 15.46-12.54 28-28 28S180 191.5 180 176S192.5 148 208 148S236 160.5 236 176zM500.3 500.3c-15.62 15.62-40.95 15.62-56.57 0l-119.7-119.7c-40.41 27.22-90.9 40.65-144.7 33.46c-91.55-12.23-166-87.28-177.6-178.9c-17.24-136.2 97.29-250.7 233.4-233.4c91.64 11.6 166.7 86.07 178.9 177.6c7.19 53.8-6.236 104.3-33.46 144.7l119.7 119.7C515.9 459.3 515.9 484.7 500.3 500.3zM294.1 182.2C294.1 134.5 255.6 96 207.1 96C160.4 96 121.9 134.5 121.9 182.2c0 38.35 56.29 108.5 77.87 134C201.8 318.5 204.7 320 207.1 320c3.207 0 6.26-1.459 8.303-3.791C237.8 290.7 294.1 220.5 294.1 182.2z"/></svg>
+                    <p>Quảng Ninh</p>
+                </a>
+            </li>
+            <li class="sun_PQ">
+                <a href="file_PQ/index.html">
+                    <svg class="logo_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M236 176c0 15.46-12.54 28-28 28S180 191.5 180 176S192.5 148 208 148S236 160.5 236 176zM500.3 500.3c-15.62 15.62-40.95 15.62-56.57 0l-119.7-119.7c-40.41 27.22-90.9 40.65-144.7 33.46c-91.55-12.23-166-87.28-177.6-178.9c-17.24-136.2 97.29-250.7 233.4-233.4c91.64 11.6 166.7 86.07 178.9 177.6c7.19 53.8-6.236 104.3-33.46 144.7l119.7 119.7C515.9 459.3 515.9 484.7 500.3 500.3zM294.1 182.2C294.1 134.5 255.6 96 207.1 96C160.4 96 121.9 134.5 121.9 182.2c0 38.35 56.29 108.5 77.87 134C201.8 318.5 204.7 320 207.1 320c3.207 0 6.26-1.459 8.303-3.791C237.8 290.7 294.1 220.5 294.1 182.2z"/></svg>
+                    <p>PHÚ QUỐC </p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+<script src="./assets/js/jquery.min.js"></script>
+<SCript src="./assets/js/animatedModal.js"></SCript>
+<script src="./assets/js/cookie.js"></script>
+
+<script>
+ 
+    $(document).ready(function() {
+        //durationSlider();
+    });
+    // function durationSlider() {
+    var listItems = $('.map_full .sun').length;
+    var count = 0;
+   // console.log(document.cookie);
+    checkCookie();
+    // deleteAllCookies();
+    // var EventActive = setInterval(setActiveLayout,1500);
+    function setActiveLayout() {
+        $('.map_full .sun.active').removeClass('active');
+        $('.sun:eq(' + count + ')').addClass('active');
+        count += 1;
+        if (count >= listItems) {
+            count = 0;
+        }
+    }
+    // HOVER
+
+       //sự kiện hover cho PQ
+       $(".map_PQ").hover(function() {
+            $('.sun_PQ .active').removeClass('active_sun');
+            $(".sun_PQ").addClass('active_sun');
+            $('.poly_PQ .active').removeClass('active_sun');
+            $(".sun_PQ").addClass('active_sun');
+            
+            
+        });
+       
+        $(".map_PQ").on("mouseleave", function() {
+            $(".sun_PQ").removeClass('active_sun');
+            
+        });
+
+          //sự kiện hover cho HL
+          $(".map_HL").hover(function() {
+            $('.sun_QN .active').removeClass('active_sun');
+            $(".sun_QN").addClass('active_sun');
+            
+        });
+        $(".map_HL").on("mouseleave", function() {
+            $(".sun_QN").removeClass('active_sun');
+            
+        });
+
+
+
+
+    // 
+    $(".sun_QN").click(function() {
+        console.log("nga QN");
+        $("#myModal").show();
+        $(".map_full").fadeOut();
+        $(".iframe_link").show('slow');
+        window.location.replace("file_HL/index.html")
+    })
+    $(".sun_PQ").click(function() {
+        console.log("nga PQ");
+        $("#myModal").show();
+        $(".map_full").fadeOut();
+        $(".iframe_link").show('slow');
+        window.location.replace("file_PQ/index.html")
+    });
+    $(".sun_QN").hover(function() {
+        $('.map_full .sun.active').removeClass('active');
+        $(".sun_QN").addClass('active');
+
+        // clearInterval(EventActive);
+    });
+    $(".sun_PQ").hover(function() {
+        $('.map_full .sun.active').removeClass('active');
+        $(".sun_PQ").addClass('active');
+        // clearInterval(EventActive);
+    });
+    $(".sun_QN").on("mouseleave", function() {
+        $(".sun_QN").removeClass('active');
+        // EventActive = setInterval(setActiveLayout,1500); 
+    });
+    $(".sun_PQ").on(" mouseleave", function() {
+        $(".sun_PQ").removeClass('active');
+        // EventActive = setInterval(setActiveLayout,1500); 
+    });
+    // login
+    $("#loginForm").submit(function(event)
+{
+    event.preventDefault();
+    $.ajax({
+        type: "POST",
+        dataType:"json",
+        url: "https://vni.pro.vn/api/v1/loginbase",
+        // url:"http://127.0.0.1:8000/api/v1/loginbase",
+        data:({
+            email : $('#email').val(),
+            password: $('#psw').val(),
+            DeviceID : "localhost"
+        }),
+        success: function(result)
+        {
+            console.log(result);
+            if(result && result.msg === "You are logged in!") // you should do your checking here
+            {
+              $("#id01").hide();
+              setCookie("username", result.user_name, 0.0002);
+            }
+            else
+            {
+                $('.container').empty().addClass('error')
+                    .append('Something is wrong.');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            //alert(xhr.responseText);
+            console.log("Error: "+thrownError);
+        },
+    });
+    return false;
+})
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+    <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        ImageMap('img[usemap]', 500);
+        $('.map').maphilight();
+        $('.map_1').maphilight();
+      });
+
+    </script>
+</html>

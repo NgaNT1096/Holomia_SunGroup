@@ -1,0 +1,63 @@
+.hover:hover {
+    opacity: 0.9;
+}
+
+body {
+    background-color: #020f20;
+    overflow: hidden;
+}
+
+.sun:hover {
+    fill: #BD24C0;
+}
+
+.active {
+    /* fill:#bd24c072 !important; */
+    fill: #1bc4ff !important;
+    color: white;
+    cursor: pointer;
+    stroke: #ff24c9;
+    stroke-width: 5px;
+}
+
+.iframe_link {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    position: absolute;
+    top: 0px;
+    overflow: none;
+}
+
+.sun_PQ:hover {
+    fill: #1bc4ff;
+    color: white;
+    cursor: pointer;
+    stroke: #ff24c9;
+    stroke-width: 5px;
+}
+
+.sun_QN:hover {
+    fill: #1bc4ff;
+    color: white;
+    cursor: pointer;
+    stroke: #ff24c9;
+    stroke-width: 5px;
+}
+
+.sun {
+    fill: #03a9f4;
+}
+
+ul li {
+    background-color: #2196f3;
+}
+
+ul .active {
+    opacity: 0.9;
+    background: linear-gradient(150.1deg, #1523aa 6.39%, #ff24c9 90.87%);
+}
+
+.text {
+    fill: white !important;
+}

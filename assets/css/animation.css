@@ -1,0 +1,67 @@
+@keyframes fadeIn {
+    60% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+      0%{
+        transform: scaleX(0.3);
+      }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+  @keyframes slideIn {
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  path{
+    /* display: none; */
+  }
+  @keyframes fadeInAnimation {
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+  @keyframes slideInFromLeft {
+    0% {
+      width: 200%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  .hover{
+    }
+    .hover:hover{
+      opacity: 0.9;
+    }
+    @keyframes zoom-in-zoom-out {
+      0% {
+        transform: scale(1, 1);
+      }
+      50% {
+        transform: scale(1.5, 1.5);
+      }
+      100% {
+        transform: scale(1, 1);
+      }
+    }
+.body_fullmap{
+    /* animation: fadeInAnimation 1.3s ease-in 0.2s forwards; */
+}
+.page_page{
+    /* animation: slideInFromLeft 1.3s ease-in 0.2s forwards; */
+    /* animation: fadeInAnimation 1.3s ease-in 0.2s forwards; */
+}
